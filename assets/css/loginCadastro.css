@@ -1,0 +1,394 @@
+@import url("https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap");
+
+*{
+    font-family: "Poppins", sans-serif;
+    /* display: grid; */
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body{
+    background-image: url(../img/Fundo/ttten\ \(1\).svg);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    display: grid;
+    height: 100%;
+    width: 100%;
+}
+
+.menu {
+    display: flex;
+    background-color:#000000;
+    height: 70px;
+    justify-content: center;
+    /* font-family: "Raleway", sans-serif; */
+}
+ 
+
+
+footer {
+    background-color: white ;
+    margin-top: 100px;
+    color: rgb(100, 38, 38);
+    padding: 20px 0;
+    font-family: Arial, sans-serif;
+}
+.footer-container {
+
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+.footer-section {
+
+    flex: 1;
+    margin: 10px;
+    min-width: 200px;
+}
+.footer-section h3 {
+
+    margin-bottom: 10px;
+    font-size: 18px;
+    color: red;
+}
+.footer-section p,
+.footer-section a {
+
+    color: #000000;
+    font-size: 14px;
+    text-decoration: none;
+
+}
+.footer-section a:hover {
+
+    color: #f0f0f0;
+    text-decoration: underline;
+}
+.footer-bottom {
+
+    text-align: center;
+    margin-top: 80px;
+    font-size: 12px;
+    color: #aaaaaaa6;
+}
+footer ul li {
+
+    list-style-type: none;
+}
+
+/* Fundo da pagina de cadastro */
+.estrutura{
+    margin: 0 auto;
+    margin-top: 100px;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid white;
+    height: 800px;
+    max-width: 390px;
+    border-radius: 5px;
+    background: white;
+    box-shadow: 0px 5px 40px rgba(0, 0, 0, 0.599);
+    padding: 30px;
+    overflow: hidden;
+    opacity: 0; /* Começa invisível */
+    transform: translateY(20px); /* Começa deslocada */
+    animation: fadeIn 1s ease-out forwards; /* Aplica a animação de fade-in */
+}
+@keyframes fadeIn {
+    0% {
+      opacity: 0;
+      transform: translateY(20px); /* Começa um pouco para baixo */
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0); /* Fica na posição original */
+    }
+  }
+/* Define o tamanho em que o titulo vai ficar */
+.slide-titulo{
+    display: flex;
+    width: 200%;
+}
+
+/* Estiliza o titulo */
+.titulo {
+    width: 50%;
+    font-size: 50px;
+    font-weight: 600;
+    text-align: center;
+    transition: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+/* Estiliza  */
+.slide-controles{
+    width: 100%;
+    height: 50px;
+    display: flex;
+    position: relative;
+    margin: 30px 0 10px 0;
+    justify-content: space-between;
+    border: 1px solid rgb(162, 162, 162);
+    border-radius: 5px;
+    overflow: hidden;
+    border-radius: 30px;
+}
+
+/* Estiliza dentro do .slide-controles */
+.slide-botão{
+    height: 100%;
+    width: 100%;
+    color: #000000;
+    font-size: 15px;
+    text-align: center;
+    font-weight: 500;
+    cursor: pointer;
+    line-height: 50px;
+    z-index: 1;
+    transition: all 0.6s ease;
+}
+
+.slide-controles label.signup {
+    color: #000;
+    justify-content: center;
+}
+
+/* cria uma div no fundo do botao para ser animada trocar de aba */
+.slider-button-tab{
+    position: absolute;
+    height: 100%;
+    width: 50%;
+    left: 0;
+    z-index: 0;
+    border-radius: 30px;
+    background: rgb(255, 0, 0);
+    transition: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+/* esconde o botao radio */
+input[type="radio"] {
+    display: none;
+}
+
+/* muda a posição da div de fundo ao selecionar o botao de cadastro */
+#signup:checked ~ .slider-button-tab{
+    left: 50%;
+}
+
+/* mudar cor do texto e tipo de cursor ao selecionar o botao de cadastro */
+#signup:checked ~ label.signup {
+    color: #ffffff;
+    cursor: default;
+    user-select: none;
+}
+
+/* muda cor do texto de login ao selecionar botao de cadastro */
+#signup:checked ~ label.login {
+    color: #000000;
+}
+
+#login:checked ~ label.signup {
+    color: #000000;
+}
+  
+#login:checked ~ label.login {
+    cursor: default;
+    user-select: none;
+    color: white;
+}
+
+/* esconde tudo que tiver fora da div */
+.form-container {
+    width: 100%;
+    overflow: hidden;
+}
+
+/* dobra o tamanho do container para esconder o campos que nao estao selecionados */
+.form-interno{
+    display: flex;
+    width: 200%;
+    height: 50%;
+}
+
+/* cria a animacao de transicao dos formularios */
+.form-interno form{
+    width: 50%;
+    transition: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+/* define tamanho dos campos */
+.quadro{
+    height: 50px;
+    width: 100%;
+    margin-top: 20px;
+}
+
+/* estiliza campos de input */
+.quadro input{
+    height: 100%;
+    width: 100%;
+    outline: none;
+    padding-left: 15px;
+    border-radius: 5px;
+    border: 1px solid rgb(162, 162, 162);
+    border-radius: 30px;
+    border-bottom-width: 2px;
+    font-size: 17px;
+    transition: all 0.3s ease;
+}
+
+/* estiliza o campo selecionado */
+.quadro input:focus {
+    border-color: red;
+    box-shadow: inset 0 0 3px #ff0000;
+}
+
+/* estiliza a legenda do campo */
+.quadro input::placeholder {
+    color: #000000;
+    transition: all 0.3s ease;
+}
+
+/* muda a cor da legenda do campo selecionado */
+.quadro input:focus::placeholder {
+    color: #ff0000;
+}
+
+.btn-senha {
+    margin-top: 5px;
+} 
+
+/* muda posicao do link de cadastro */
+.contato {
+    text-align: center;
+    padding-top: 30px;
+}
+
+/* estiliza os links de criar a conta de esqueceu senha*/
+.btn-senha a,
+.contato a {
+  color: rgba(255, 0, 0, 0.791);
+  text-decoration: none;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.btn-senha a:hover,
+.contato a:hover {
+  text-decoration: underline;
+  text-decoration: none;
+}
+
+.btn-senha a::before {
+    position: absolute;
+    content: '';
+    border-radius: 5px;
+    height: 2px;
+    width: 100%;
+    text-align: center;
+    align-self: center;
+    justify-self: center;
+    background-color: #ff0000;
+    bottom: 0;
+    transform-origin: center;
+    transform: scaleX(0);
+    transition: transform .3s ease-in-out;
+}
+
+.contato a::before {
+    position: absolute;
+    content: '';
+    border-radius: 5px;
+    height: 2px;
+    width: 100%;
+    text-align: center;
+    align-self: center;
+    justify-self: center;
+    background-color: #ff0000;
+    bottom: 0;
+    transform-origin: center;
+    transform: scaleX(0);
+    transition: transform .3s ease-in-out;
+}
+
+.btn-senha a:hover::before,
+.contato a:hover::before {
+    transform-origin: center;
+    transform: scaleX(1);
+}
+
+/* Estiliza o botão de Entrar */
+.btn {
+    height: 70px;
+    width: 100%;
+    border-radius: 30px;
+    display: flex;
+    position: relative;
+}
+
+.btn:hover .btn-layer {
+    left: 0;
+}
+
+.btn input[type="submit"] {
+    z-index: 1;
+    position: relative;
+    background: red;
+    border: 1px solid;
+    font-size: 20px;
+    cursor: pointer;
+    font-weight: 600;
+    color: rgb(255, 255, 255);
+    padding-left: 0;
+    border-radius: 30px;
+    justify-content: center;
+    width: 90%;
+    height: 80%;
+    margin: 0 auto;
+    margin-top: 20px;
+}
+
+.requisito{
+    display: grid;
+    width: 100%;
+    height: 150px;
+}
+
+.sub-requisito{
+    display: flex;
+}
+
+.requisito input{
+    margin-right: 10px;
+}
+
+.requisito p{
+    font-size: 10px;
+}
+
+.menu__home_login{
+    margin-top: 10px;
+    scale: (10);
+
+ }
+
+ .menu__home_login img{
+    width: 200px;
+    height:200px;
+    mix-blend-mode: multiply;
+    backdrop-filter: blur(1px);
+ }
+ header {
+   
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}

@@ -1,0 +1,11 @@
+votacao_front.php - tema - Ação
+votacao_front2.php - tema - COMÉDIA
+votacao_front3.php - tema - Documentario
+votacao_front4.php - tema - Drama
+votacao_front5.php - tema - Famosos
+votacao_front6.php - tema - ficcao cientifica
+votacao_front7.php - tema - natalinos
+votacao_front8.php - tema - MARVEL vs DC
+votacao_front9.php - tema - MEDIEVAIS
+votacao_front10.php - tema - ROMANCE
+votacao_front11.php - tema - TERROR
