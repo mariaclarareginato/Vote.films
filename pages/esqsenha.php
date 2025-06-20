@@ -112,7 +112,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <h3>Links</h3>
                 <ul>
                    
-                    <li><a href="../pages/loginCadastro.php">LOGIN</a></li>
+                    <li><a href="../pages/index.php">LOGIN</a></li>
                     
                 </ul>
             </div>
