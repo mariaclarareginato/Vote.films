@@ -49,14 +49,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['emaillogin'], $_POST[
             if (trim($dados[1]) == $emailLogin && trim($dados[2]) == $senhaLogin) {
            
                 $loginValido = true; // Login válido
-                header('Location: index.html');
+                header('Location: index.php');
             }
         }
     }
  
     if ($loginValido == true) {
         echo "<script>alert('Login realizado com sucesso!');";
-        header('Location: index.html');
+        header('Location: home.html');
     } else {
         echo "<script>alert('Usuário ou senha incorretos.');</script>";
     }
@@ -110,7 +110,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['emaillogin'], $_POST[
                         <input type="password" placeholder="Senha" name="senhalogin" required>
                     </div>
                     <div class="btn-senha">
-                        <a href="./esqsenha.php">Esqueceu a senha?</a>
+                        <a href="./pages/esqsenha.php">Esqueceu a senha?</a>
                     </div>
                     <div class="quadro btn">
                         <input type="submit" value="Entrar">
