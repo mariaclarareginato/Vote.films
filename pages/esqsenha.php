@@ -45,7 +45,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if ($senhaAlterada == true) {
             echo "<script>alert('Senha alterada com sucesso!');</script>";
             session_destroy(); // Limpa a sessão após redefinição
-            header('Location: loginCadastro.php');
+            header('Location: index.php');
         } else {
             echo "<script>alert('Erro: Email não encontrado no registro.');</script>";
         }
