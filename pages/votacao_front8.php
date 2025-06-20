@@ -71,7 +71,7 @@ if (count($_SESSION['em_votacao']) === 1) {
 
 <body>
     <header class= 'header-votacao'>
-        <a href='../pages/generos.html'>  
+        <a href='./pages/generos.html'>  
                 <button type='button' class='btn btn-danger'>VOLTAR</button>
             </a>
         </header>

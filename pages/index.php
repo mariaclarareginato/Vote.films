@@ -110,7 +110,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['emaillogin'], $_POST[
                         <input type="password" placeholder="Senha" name="senhalogin" required>
                     </div>
                     <div class="btn-senha">
-                        <a href="./pages/esqsenha.php">Esqueceu a senha?</a>
+                        <a href="../pages/esqsenha.php">Esqueceu a senha?</a>
                     </div>
                     <div class="quadro btn">
                         <input type="submit" value="Entrar">
@@ -119,7 +119,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['emaillogin'], $_POST[
                         Não tem conta?<a href="">Crie agora</a>
                     </div>
                 </form>
-                <form class="signup" action="./pages/home.html" method="post">
+                <form class="signup" action="../pages/index.html" method="post">
                     <div class="quadro">
                         <input type="text" placeholder="Nome" name="nome" required>
                     </div>
