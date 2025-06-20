@@ -56,7 +56,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['emaillogin'], $_POST[
  
     if ($loginValido == true) {
         echo "<script>alert('Login realizado com sucesso!');";
-        // header('Location: index.html');
+        header('Location: index.html');
     } else {
         echo "<script>alert('Usuário ou senha incorretos.');</script>";
     }
