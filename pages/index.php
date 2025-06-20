@@ -119,7 +119,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['emaillogin'], $_POST[
                         Não tem conta?<a href="">Crie agora</a>
                     </div>
                 </form>
-                <form class="signup" action="./home.html" method="post">
+                <form class="signup" action="./pages/home.html" method="post">
                     <div class="quadro">
                         <input type="text" placeholder="Nome" name="nome" required>
                     </div>
