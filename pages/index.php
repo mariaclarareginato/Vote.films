@@ -1,185 +1,121 @@
 <?php
- 
-// Caminho do arquivo de dados
-$arquivoCadastro = "cadastro.txt";
- 
-// Cadastro de novo usuário
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['nome'], $_POST['email'], $_POST['senha'], $_POST['confirmarsenha'])) {
-    $nome = trim($_POST['nome']);
-    $email = trim($_POST['email']);
-    $senha = trim($_POST['senha']);
-    $confirmarSenha = trim($_POST['confirmarsenha']);
- 
-    // Validações básicas
-    if ($senha !== $confirmarSenha) {
-        echo "<script>alert('As senhas não coincidem.');</script>";
-        return;
-    }
- 
-    // Verifica se o e-mail já está cadastrado
-    if (file_exists($arquivoCadastro)) {
-        $usuarios = file($arquivoCadastro, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
-        foreach ($usuarios as $usuario) {
-            $dados = explode(",", $usuario);
-            if ($dados[1] === $email) {
-                echo "<script>alert('E-mail já cadastrado.');</script>";
-                return;
-            }
-        }
-    }
- 
-    // Salva o novo usuário
-    $dados = $nome . "," . $email . "," . $senha . "\n";
-    file_put_contents($arquivoCadastro, $dados, FILE_APPEND);
-    echo "<script>alert('Cadastro realizado com sucesso!');</script>";
+session_start();
+
+// reinicia, para garantir que não fique começando de um filme fora da ordem.
+if (isset($_GET['reset'])) {
+    session_destroy();
+    session_start();
 }
- 
-// Login do usuário
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['emaillogin'], $_POST['senhalogin'])) {
-    $emailLogin = trim($_POST['emaillogin']);
-    $senhaLogin = trim($_POST['senhalogin']);
-   
-    $loginValido = false;
-    // Verifica credenciais no arquivo
-    if (file_exists($arquivoCadastro)) {
-        $usuarios = file($arquivoCadastro, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
-        foreach ($usuarios as $usuario) {
-            $dados = explode(",", $usuario);
-     
-            if (trim($dados[1]) == $emailLogin && trim($dados[2]) == $senhaLogin) {
-           
-                $loginValido = true; // Login válido
-                header('Location: index.php');
-            }
-        }
-    }
- 
-    if ($loginValido == true) {
-        echo "<script>alert('Login realizado com sucesso!');";
-        header('Location: home.html');
-    } else {
-        echo "<script>alert('Usuário ou senha incorretos.');</script>";
-    }
+
+// Inicializa a lista de filmes 
+if (!isset($_SESSION['filmes'])) {
+    $_SESSION['filmes'] = [
+        ['nome' => 'Interestelar', 'imagens' => 'interstellar.jpg'],
+        ['nome' => 'Missão impossivel', 'imagens' => 'missao_impossivel.jpg'],
+        ['nome' => 'Tropa de Elite', 'imagens' => 'tropa_de_elite.jpg'],
+        ['nome' => 'Cidade de Deus', 'imagens' => 'cidade_de_deus.jpg'],
+        ['nome' => 'John Wick: De volta ao jogo', 'imagens' => 'john_wick.jpg'],
+        ['nome' => 'Velozes e furiosos', 'imagens' => 'velozes_e_furiosos.jpg'],
+        ['nome' => 'Ferrari vs Ford', 'imagens' => 'ford_vs_ferrari.jpg'],
+        ['nome' => 'Top Gun - Ases Indomáveis', 'imagens' => 'top_gun.jpg'],
+        ['nome' => 'Indiana Jones e os caçadores da arca perdida', 'imagens' => 'indiana_jones.jpg'],
+        ['nome' => 'Free guy: Assumindo o controle', 'imagens' => 'free_guy.jpg']
+    ];
 }
- 
+
+// Inicializa os filmes em votação
+if (!isset($_SESSION['em_votacao'])) {
+    $_SESSION['em_votacao'] = [array_shift($_SESSION['filmes']), array_shift($_SESSION['filmes'])];
+}
+
+// Processa o voto
+if (isset($_GET['voto'])) {
+    $voto = (int)$_GET['voto'];
+
+    // tira o filme "perdedor"
+    $perdedor = $voto === 0 ? 1 : 0;
+    unset($_SESSION['em_votacao'][$perdedor]);
+
+    // Adiciona um novo filme
+    if (count($_SESSION['filmes']) > 0) {
+        $_SESSION['em_votacao'][$perdedor] = array_shift($_SESSION['filmes']);
+    }
+
+    // Reorganiza os índices do array em_votacao
+    $_SESSION['em_votacao'] = array_values($_SESSION['em_votacao']);
+}
+
+// Checa se há apenas um filme restante e exibe o vencedor
+if (count($_SESSION['em_votacao']) === 1) {
+    $vencedor = $_SESSION['em_votacao'][0];
+    echo "<!DOCTYPE html>
+<html lang='pt-br'>
+
+<head>
+    <meta charset='UTF-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <title>Votação de Filmes</title>
+    <link rel='stylesheet' href='../assets/css/styleVotacao.css'>
+    <link rel='icon' href='../assets/img/icon/VOTE (1).png' >
+    <link href='https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css' rel='stylesheet' integrity='sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH' crossorigin='anonymous'>
+</head>
+
+<body>
+    <header class= 'header-votacao'>
+        <a href='../pages/generos.html'>  
+                <button type='button' class='btn btn-danger'>VOLTAR</button>
+            </a>
+        </header>
+
+            <!-------->
+            <div class='vencedor-container'>
+            <h1>Filme Vencedor:</h1>
+            <p class='text-vencedor'>{$vencedor['nome']}</p>
+            <img src='../assets/img/filmes/acao/{$vencedor['imagens']}' alt='{$vencedor['nome']}' class='img-vencedor'>
+          </div>
+</body>
+
+</html>";
+    session_destroy();
+    exit;
+}
 ?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
- 
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title></title>
-    <link rel="stylesheet" href="../assets/css/loginCadastro.css">
-    <link rel="icon" href="../assets/img/icon/VOTE (1).png">
+    <title>Votação de Filmes</title>
+    <link rel="stylesheet" href="../assets/css/styleVotacao.css">
+    <link rel="icon" href="../assets/img/icon/VOTE (1).png" >
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 </head>
- 
+
 <body>
-    <script src="../assets/js/loginCadastro.js"></script>
-    <header>
-        <div class="menu__home_login">
-           
-            <img src="../assets/img/img-logo/1.jpg" class="img__menu">
-                </div>
-    </header>
+    <header class= "header-votacao">
+        <a href="./pages/generos.html">  
+                <button type="button" class="btn btn-danger">VOLTAR</button>
+            </a>
+        </header>
 
-
-    <div class="estrutura">
-        <div class="slide-titulo">
-            <div class="titulo login">
-                Login
-            </div>
-            <div class="titulo cadastro">
-                Crie sua conta
-            </div>
+            <!-------->
+    <main class="main">
+        <h1 class="titulo">Escolha o filme:</h1>
+        <div class="opcoes">
+            <?php foreach ($_SESSION['em_votacao'] as $key => $filme): ?>
+                <a href="votacao_front.php?voto=<?= $key ?>">
+                    <input type="image" src="../assets/img/filmes/acao/<?= $filme['imagens'] ?>" 
+                        alt="<?= $filme['nome'] ?>" class="button">
+                </a>
+            <?php endforeach; ?>
         </div>
-        <div class="form-container">
-            <div class="slide-controles" onclick="handlerTab(this, event)">
-                <input type="radio" name="slide" id="login" checked>
-                <input type="radio" name="slide" id="signup">
-                <label for="login" class="slide-botão login">Login</label>
-                <label for="signup" class="slide-botão signup">Cadastro</label>
-                <div class="slider-button-tab"></div>
-            </div>
-            <div class="form-interno">
-                <form class="login" action="" method="post">
-                    <div class="quadro">
-                        <input type="email" placeholder="E-mail" name="emaillogin" required>
-                    </div>
-                    <div class="quadro">
-                        <input type="password" placeholder="Senha" name="senhalogin" required>
-                    </div>
-                    <div class="btn-senha">
-                        <a href="../pages/esqsenha.php">Esqueceu a senha?</a>
-                    </div>
-                    <div class="quadro btn">
-                        <input type="submit" value="Entrar">
-                    </div>
-                    <div class="contato">
-                        Não tem conta?<a href="">Crie agora</a>
-                    </div>
-                </form>
-                <form class="signup" action="./pages/index.html" method="post">
-                    <div class="quadro">
-                        <input type="text" placeholder="Nome" name="nome" required>
-                    </div>
-                    <div class="quadro">
-                        <input type="email" placeholder="E-mail" name="email" required>
-                    </div>
-                    <div class="quadro">
-                        <input type="password" placeholder="Senha" name="senha" required>
-                    </div>
-                    <div class="quadro">
-                        <input type="password" placeholder="Confirme sua senha" name="confirmarsenha" required>
-                    </div>
-                    <div class="quadro btn">
-                        <input type="submit" value="Entrar">
-                    </div>
-                </form>
-            </div>
-            <div class="requisito">
-                <div class="sub-requisito">
-                    <input type="checkbox" required>
-                    <p>Eu concordo com os termos de segurança, e estou ciente de que meus resultados serão visualizados pela equipe VOTE.F para pesquisas com relação aos meus votos.</p>
-                </div>
-                <div class="sub-requisito">
-                    <input type="checkbox" required>
-                    <p>Quero que meus votos sejam anônimos, sem aparecerem nas pesquisas da VOTE.F.</p>
-                </div>
-            </div>
+        <!-- Botão para reiniciar -->
+        <div class="reset">
+            <a href="votacao_front.php?reset=true">Reiniciar Votação</a>
         </div>
-    </div>
-   <!--footer-->
-   <footer>
-        <div class="footer-container">
-            <!--  -->
-            <div class="footer-section contact">
-                <h3>Contato</h3>
-                <p>Telefone: (11) 1234-5678</p>
-                <p>Email: vote.f@outlook.com</p>
-                <p>Endereço: R. Santo André, 680 - Boa Vista, São Caetano do Sul - SP, 09572-000</p>
-            </div>
-
-            <!--  -->
-           
-
-            <!--  -->
-            <div id="f" class="footer-section social">
-                <h3>Siga os criadores</h3>
-                <a href="#f" >Instagram: </a> |
-                <a href="https://www.instagram.com/felipehenryss/profilecard/?igsh=MXVkZXFvNWt1bjdqaw==" target="_blank">Felipe Henry </a> |
-                <a href="https://www.instagram.com/ma.rgnto?igsh=dnM2azZsMXowMG43" target="_blank"> Maria Clara</a> |
-                <a href="https://www.instagram.com/011_s0usax/profilecard/?igsh=ZDd3YzAxcGFib2Rr" target="_blank"> Richard Garcia</a> <br>
-                <a href="#" target="_blank">LinkedIn:</a> |
-                <a href="https://www.linkedin.com/in/felipe-henry-severino-sacchi-621983337/" target="_blank">Felipe Henry </a> |
-                <a href="https://www.linkedin.com/in/maria-clara-reginato-b44b63339/" target="_blank"> Maria Clara</a> |
-                <a href="https://www.linkedin.com/in/richard-sousa-garcia-b91986337?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank"> Richard Garcia</a> 
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p>&copy; 2024 vote.f. Todos os direitos reservados.</p>
-        </div>
-       
-    </footer>
-
+    </main>
 </body>
+
+</html>
