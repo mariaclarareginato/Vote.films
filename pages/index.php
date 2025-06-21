@@ -16,17 +16,18 @@ if (isset($_GET['reset'])) {
 
 // Inicializa a lista de filmes 
 if (!isset($_SESSION['filmes'])) {
-    $_SESSION['filmes'] = [
-        ['nome' => 'Gente Grande', 'imagens' => 'gente_grande.jpg'],
-        ['nome' => 'Família do Bagulho', 'imagens' => 'familia_do_bagulho.jpg'],
-        ['nome' => 'Se Beber, Não Case', 'imagens' => 'se_beber_nao_case.jpg'],
-        ['nome' => 'Os Farofeiros', 'imagens' => 'os_farofeiros.jpg'],
-        ['nome' => 'Superbad: É Hoje', 'imagens' => 'superbad.jpg'],
-        ['nome' => 'Minha Mãe É uma Peça', 'imagens' => 'minha_mae_e_uma_peca.jpg'],
-        ['nome' => 'As Branquelas', 'imagens' => 'as_branquelas.jpg'],
-        ['nome' => 'Todo Mundo em Pânico', 'imagens' => 'todo_mundo_em_panico.jpg'],
-        ['nome' => 'Click', 'imagens' => 'click.jpg']
-    ];
+   $_SESSION['filmes'] = [
+    ['nome' => 'Velozes e Furiosos', 'imagens' => 'velozes_e_furiosos.jpg'],
+    ['nome' => 'Tropa de Elite', 'imagens' => 'tropa_de_elite.jpg'],
+    ['nome' => 'Top Gun', 'imagens' => 'top_gun.jpg'],
+    ['nome' => 'Missão: Impossível', 'imagens' => 'missao_impossivel.jpg'],
+    ['nome' => 'John Wick', 'imagens' => 'john_wick.jpg'],
+    ['nome' => 'Interestelar', 'imagens' => 'interstellar.jpg'],
+    ['nome' => 'Indiana Jones', 'imagens' => 'indiana_jones.jpg'],
+    ['nome' => 'Free Guy', 'imagens' => 'free_guy.jpg'],
+    ['nome' => 'Ford vs Ferrari', 'imagens' => 'ford_vs_ferrari.jpg'],
+    ['nome' => 'Cidade de Deus', 'imagens' => 'cidade_de_deus.jpg']
+];
 }
 
 // Inicializa os filmes em votação
