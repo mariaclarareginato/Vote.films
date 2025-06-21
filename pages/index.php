@@ -96,7 +96,7 @@ if (count($_SESSION['em_votacao']) === 1) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Votação de Filmes</title>
     <link rel="stylesheet" href="../assets/css/styleVotacao.css">
-    <link rel="icon" href="../assets/img/icon/VOTE (1).png">
+    <link rel="icon" href="../assets/img/icon/voteicon.png">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 </head>
 
@@ -111,7 +111,7 @@ if (count($_SESSION['em_votacao']) === 1) {
         <h1 class="titulo">Escolha o filme:</h1>
         <div class="opcoes">
             <?php foreach ($_SESSION['em_votacao'] as $key => $filme): ?>
-                <a href="votacao_front2.php?voto=<?= $key ?>">
+                <a href="index.php?voto=<?= $key ?>">
                     <input type="image" src="../assets/img/filmes/comedia/<?= $filme['imagens'] ?>" 
                            alt="<?= $filme['nome'] ?>" class="button">
                 </a>
@@ -119,7 +119,7 @@ if (count($_SESSION['em_votacao']) === 1) {
         </div>
         <!-- Botão para reiniciar -->
         <div class="reset">
-            <a href="votacao_front2.php?reset=true">Reiniciar Votação</a>
+            <a href="index.php?reset=true">Reiniciar Votação</a>
         </div>
     </main>
 </body>
