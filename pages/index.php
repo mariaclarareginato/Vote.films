@@ -78,7 +78,7 @@ if (count($_SESSION['em_votacao']) === 1) {
                 <div class='vencedor-container'>
                 <h1>Filme Vencedor:</h1>
                 <p class='text-vencedor'>{$vencedor['nome']}</p>
-                <img src='../assets/img/filmes/comedia/{$vencedor['imagens']}' alt='{$vencedor['nome']}' class='img-vencedor'>
+                <img src='../assets/img/filmes/acao/{$vencedor['imagens']}' alt='{$vencedor['nome']}' class='img-vencedor'>
               </div>
     </body>
     
@@ -112,7 +112,7 @@ if (count($_SESSION['em_votacao']) === 1) {
         <div class="opcoes">
             <?php foreach ($_SESSION['em_votacao'] as $key => $filme): ?>
                 <a href="index.php?voto=<?= $key ?>">
-                    <input type="image" src="../assets/img/filmes/comedia/<?= $filme['imagens'] ?>" 
+                    <input type="image" src="../assets/img/filmes/acao/<?= $filme['imagens'] ?>" 
                            alt="<?= $filme['nome'] ?>" class="button">
                 </a>
             <?php endforeach; ?>
