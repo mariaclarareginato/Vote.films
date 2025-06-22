@@ -1,0 +1,253 @@
+@import url("https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap");
+
+*{
+    font-family: "Poppins", sans-serif;
+    /* display: grid; */
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body{
+    background-image: url(../img/Fundo/ttten\ \(1\).svg);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    display: grid;
+    height: 100%;
+    width: 100%;
+}
+
+.menu {
+    display: flex;
+    background-color:#000000;
+    height: 70px;
+    justify-content: center;
+    position: top;
+}
+ 
+nav {
+    display: flex;
+}
+ 
+nav ul {
+    display: flex;
+    border-color: black;
+}
+ 
+nav ul li {
+    list-style: none;
+    margin-right: 110px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 16px;
+    margin-top: 10px;
+    vertical-align: middle;
+}
+ 
+li a {
+    color: white;
+    text-decoration: none;
+}
+ 
+li a:hover {
+    color: whitesmoke;
+}
+
+footer {
+    margin-top: 140px;
+    background-color: #2c2a2a;
+    color: #ffffff;
+    padding: 20px 0;
+    font-family: Arial, sans-serif;
+}
+ 
+footer {
+    background-color: white ;
+    margin-top: 100px;
+    color: rgb(100, 38, 38);
+    padding: 20px 0;
+    font-family: Arial, sans-serif;
+}
+.footer-container {
+   
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+.footer-section {
+
+    flex: 1;
+    margin: 10px;
+    min-width: 200px;
+}
+.footer-section h3 {
+
+    margin-bottom: 10px;
+    font-size: 18px;
+    color: red;
+}
+.footer-section p,
+.footer-section a {
+
+    color: #000000;
+    font-size: 14px;
+    text-decoration: none;
+
+}
+.footer-section a:hover {
+
+    color: #f0f0f0;
+    text-decoration: underline;
+}
+.footer-bottom {
+
+    text-align: center;
+    margin-top: 80px;
+    font-size: 12px;
+    color: #aaaaaaa6;
+}
+footer ul li {
+
+    list-style-type: none;
+}
+.container{
+    display: grid;
+    border: 0px solid rgb(255, 255, 255);
+    border-radius: 5px;
+    box-shadow: 0 5px 10px 5px rgba(0, 0, 0, 0.581);
+    height: 65%;
+    width: 20%;
+    justify-content: center;
+    margin: 0 auto;
+    margin-top: 200px;
+    margin-bottom: 100px;
+    background: white;
+    transform: translateY(20px); /* Começa deslocada */
+    animation: fadeIn 1s ease-out forwards; /* Aplica a animação de fade-in */
+}
+@keyframes fadeIn {
+    0% {
+      opacity: 0;
+      transform: translateY(20px); /* Começa um pouco para baixo */
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0); /* Fica na posição original */
+    }
+  }
+
+.quadro{
+    border: 0px solid;
+    border-radius: 30px;
+    width: 100%;
+    height: 70px;
+    display: flex;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.quadro input{
+    width: 70%;
+    height: 50px;
+    border-radius: 30px;
+    border: 1px solid rgb(162, 162, 162);
+    transition: all 0.3s ease;
+    outline: none;
+    font-weight: 500;
+    font-size: 15px;
+    padding-left: 15px;
+}
+
+.quadro input:focus {
+    border-color: red;
+    box-shadow: inset 0 0 3px #ff0000;
+}
+
+.quadro input:focus::placeholder {
+    color: #ff0000;
+}
+
+.quadro input::placeholder {
+    color: #000000;
+    transition: all 0.3s ease;
+}
+
+.style-email,
+.conf-senha,
+.style-senha{
+    padding-left: 15px;
+}
+
+.style-email::placeholder{
+    justify-content: center;
+    color: black;
+    transition: all 0.3s ease;
+}
+
+.style-senha::placeholder{
+    justify-content: center;
+    color: black;
+    transition: all 0.3s ease;
+}
+
+.conf-senha::placeholder{
+    justify-content: center;
+    color: black;
+    transition: all 0.3s ease;
+}
+
+.style-enviar{
+    background-color: red;
+    color: white;
+    justify-content: center;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+.container-title{
+    width: 80%;
+    height: 250px;
+    border: 0px solid black;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    display: grid;
+}
+
+.title{
+    display: grid;
+    text-align: center;
+}
+
+.title h1{
+    font-weight: 500;
+    font-size: 40px;
+}
+
+.form{
+    margin-bottom: 40px;
+}
+
+.menu__home_login{
+    margin-top: 10px;
+    scale: (10);
+
+ }
+
+ .menu__home_login img{
+    width: 200px;
+    height:200px;
+    mix-blend-mode: multiply;
+    backdrop-filter: blur(1px);
+ }
+ header {
+   
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
