@@ -1,18 +1,12 @@
-
+<div align="center">
+ 
 # VOTE.F
-
-
-
-
-
-
-
 
 ![image](https://github.com/user-attachments/assets/cac05f95-d7ac-4fbd-880a-1eb0a42808c1)
 
+</div>
 
-
----
+##
 
 ## Objetivo do Projeto
 
